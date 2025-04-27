@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://d1k2fqi407mur"]
+
+[ext_resource type="Script" uid="uid://c7hl6f0p32ygc" path="res://scripts/game.gd" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://dhku6qqkck1t2" path="res://img/jimmy1.png" id="2_yqjtg"]
+[ext_resource type="AudioStream" uid="uid://kjjimnldhjgl" path="res://audio/Click.ogg" id="3_lnu2h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cj0n"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_uwrxv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqjtg"]
+font_size = 30
+font_color = Color(0.054902, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p57ef"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywne"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqjtg"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_lbhrr"]
+script/source = "extends AudioStreamPlayer
+"
+
+[node name="Control" type="Control" node_paths=PackedStringArray("jc")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uwrxv")
+jc = NodePath("Panel/Label")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8cj0n")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 2.0
+offset_right = 238.0
+offset_bottom = 44.0
+theme = SubResource("Theme_uwrxv")
+text = "Jimmys Clicked: Haven't clicked any yet..."
+label_settings = SubResource("LabelSettings_yqjtg")
+horizontal_alignment = 1
+
+[node name="warning" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = -41.0
+offset_top = 35.0
+offset_right = 333.0
+offset_bottom = 83.0
+theme = SubResource("Theme_uwrxv")
+text = "Debug Build v0.0.2"
+label_settings = SubResource("LabelSettings_yqjtg")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 208.0
+offset_right = 535.0
+offset_bottom = 439.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_iywne")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbhrr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lnu2h")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Button"]
+layout_mode = 1
+offset_left = -48.0
+offset_top = -98.0
+offset_right = 354.0
+offset_bottom = 280.0
+texture = ExtResource("2_yqjtg")
+
+[node name="Button2" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 523.0
+offset_right = 182.0
+offset_bottom = 582.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_yqjtg")
+text = "MAIN MENU"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lnu2h")
+script = SubResource("GDScript_lbhrr")
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

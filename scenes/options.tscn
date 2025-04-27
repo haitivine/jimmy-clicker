@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://clwrat8cyn7f6"]
+
+[ext_resource type="Script" uid="uid://ddggqfw7mdija" path="res://scripts/2back.gd" id="1_c2u1v"]
+[ext_resource type="Script" uid="uid://d3ng7rykylffo" path="res://scripts/options.gd" id="1_yjkok"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ckv8"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_0ctdu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2fbfq"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gwij"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yjkok")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ckv8")
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 223.0
+offset_right = 688.0
+offset_bottom = 293.0
+theme = SubResource("Theme_0ctdu")
+text = "Mute Master"
+label_settings = SubResource("LabelSettings_2fbfq")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 175.0
+offset_right = 711.0
+offset_bottom = 245.0
+scale = Vector2(1, 0.980714)
+theme = SubResource("Theme_0ctdu")
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_2fbfq")
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 401.0
+offset_right = 518.0
+offset_bottom = 455.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8gwij")
+text = "Back"
+script = ExtResource("1_c2u1v")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.13
+anchor_bottom = 0.119
+offset_left = 534.0
+offset_top = 236.0
+offset_right = 441.0
+offset_bottom = 188.6
+
+[connection signal="pressed" from="Panel/Back" to="Panel/Back" method="_on_pressed"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
