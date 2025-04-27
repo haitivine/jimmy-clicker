@@ -1,8 +1,0 @@
-main scene: jimmy menu (main menu)
-max fps: 1000
-boot splash: black background, logo.png
-
-width: 900
-height: 600
-windowed
-center of screen
